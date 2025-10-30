@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Онлайн‑курс по Jazz Funk — с нуля до уверенных связок</title>
+  <meta name="description" content="Онлайн‑курс по стилю Jazz Funk: базовые движения, музыкальность, техника и эффектные связки. Видео‑уроки, обратная связь и именной сертификат." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f0f12;
+      --bg-soft:#15151a;
+      --txt:#f5f7fa;
+      --muted:#cbd5e1;
+      --brand:#ff2d8a; /* акцент под Jazz Funk */
+      --brand-2:#8a2dff; /* градиентный партнёр */
+      --ok:#22c55e; --warn:#f59e0b; --err:#ef4444;
+      --card:#121218; --stroke:#262633; --shadow: 0 6px 30px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--txt);font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .wrap{width:min(1200px,100%);margin-inline:auto;padding-inline:20px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-weight:700;border:0;cursor:pointer;box-shadow:var(--shadow);transition:transform .15s ease,opacity .15s ease}
+    .btn:hover{transform:translateY(-1px)}
+    .btn--ghost{background:transparent;border:1px solid var(--stroke);font-weight:600}
+    .chip{padding:6px 10px;border:1px solid var(--stroke);border-radius:999px;color:var(--muted);font-size:12px;}
+    .grid{display:grid;gap:18px}
+    .grid.col-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid.col-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    @media (max-width:900px){.grid.col-3{grid-template-columns:1fr 1fr}}
+    @media (max-width:680px){.grid.col-3,.grid.col-2{grid-template-columns:1fr}}
+    header{position:sticky;top:0;backdrop-filter:saturate(180%) blur(8px);background:rgba(15,15,18,.65);border-bottom:1px solid var(--stroke);z-index:40}
+    header .bar{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .logo{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.3px}
+    .logo-dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 0 18px rgba(255,45,138,.55)}
+    nav a{opacity:.9;margin-inline:12px}
+    nav a:hover{opacity:1}
+    .hero{position:relative;padding:72px 0 48px;background:radial-gradient(1200px 500px at 80% -20%,rgba(138,45,255,.18),transparent), radial-gradient(1200px 500px at 20% -20%,rgba(255,45,138,.18),transparent)}
+    .hero h1{font-size:clamp(28px,4vw,48px);line-height:1.05;margin:12px 0}
+    .hero p{color:var(--muted);max-width:760px}
+    .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+    .hero .price{margin-top:14px;color:#fff;font-weight:800;font-size:28px}
+    .hero .price s{color:var(--muted);font-weight:500;font-size:18px;margin-left:8px}
+    .card{background:linear-gradient(180deg,var(--card),#0e0e13);border:1px solid var(--stroke);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .card h3{margin:.2em 0 .4em;font-size:18px}
+    .muted{color:var(--muted)}
+    section{padding:42px 0}
+    .section-title{font-size:26px;margin:0 0 16px}
+    .kpis{display:flex;gap:18px;flex-wrap:wrap}
+    .kpi{flex:1 1 180px;background:rgba(255,255,255,.03);border:1px dashed var(--stroke);padding:16px;border-radius:14px}
+    .kpi b{font-size:22px}
+    .prog-item{padding:16px;border:1px solid var(--stroke);border-radius:14px;display:flex;gap:14px;align-items:flex-start}
+    .prog-step{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,.06);font-weight:800}
+    .teacher{display:grid;grid-template-columns:180px 1fr;gap:20px}
+    @media (max-width:680px){.teacher{grid-template-columns:1fr}}
+    .faq details{border:1px solid var(--stroke);border-radius:14px;padding:14px}
+    .faq summary{cursor:pointer;font-weight:600}
+    footer{padding:30px 0;border-top:1px solid var(--stroke);color:var(--muted)}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);border:1px solid var(--stroke);border-radius:999px;padding:8px 12px}
+    .form{display:grid;gap:12px}
+    .form input,.form textarea{width:100%;padding:14px 16px;border-radius:12px;background:#0b0b10;border:1px solid var(--stroke);color:#fff}
+    .form small{color:var(--muted)}
+    .partners{display:flex;gap:16px;flex-wrap:wrap;opacity:.85}
+    .partners .p{height:28px;aspect-ratio:3/1;background:#1f1f29;border:1px solid var(--stroke);border-radius:8px}
+    .ribbon{display:inline-flex;gap:8px;align-items:center;background:linear-gradient(135deg,rgba(255,45,138,.2),rgba(138,45,255,.2));border:1px solid var(--stroke);padding:8px 12px;border-radius:999px}
+    .note{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap bar">
+      <div class="logo"><span class="logo-dot"></span> JazzFunk.Academy</div>
+      <nav>
+        <a href="#who">Кому подойдёт</a>
+        <a href="#learn">Чему научитесь</a>
+        <a href="#program">Программа</a>
+        <a href="#teacher">Преподаватель</a>
+        <a href="#price">Цена</a>
+        <a href="#apply" class="chip">Оставить заявку</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <span class="badge">Онлайн‑курс • доступ навсегда • сертификат</span>
+        <h1>Онлайн‑курс по <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent">Jazz Funk</span>
+          — от базовых движений до эффектных связок</h1>
+        <p class="muted">Погрузитесь в энергетику джаз‑фанка: техника, пластика, музыкальность и уверенность на сцене. Короткие видео‑уроки, много практики и поддержка куратора. Формат — «с нуля», подходит для любого уровня физподготовки.</p>
+        <div class="kpis" style="margin-top:18px">
+          <div class="kpi"><b>8 модулей</b><br><span class="muted">с акцентом на практику</span></div>
+          <div class="kpi"><b>2–3 ч/нед</b><br><span class="muted">гибкий график</span></div>
+          <div class="kpi"><b>Сертификат</b><br><span class="muted">именной в конце курса</span></div>
+          <div class="kpi"><b>Доступ навсегда</b><br><span class="muted">обновления включены</span></div>
+        </div>
+        <div class="cta">
+          <a href="#apply" class="btn">Записаться на курс</a>
+          <a href="#program" class="btn btn--ghost">Смотреть программу</a>
+        </div>
+        <div class="price">1 900 ₽ <s>5 200 ₽</s> <span class="chip">Рассрочка 475 ₽/мес</span></div>
+        <div class="note">Сезонная акция • мгновенный доступ после оплаты • возврат в течение 14 дней</div>
+      </div>
+    </section>
+
+    <section id="who">
+      <div class="wrap">
+        <h2 class="section-title">Кому подойдёт этот курс</h2>
+        <div class="grid col-3">
+          <div class="card"><h3>Новичкам</h3><p class="muted">Если давно мечтали начать танцевать — здесь понятная база: стойка, контроль корпуса, координация, ритмика.</p></div>
+          <div class="card"><h3>Танцпол‑энтузиастам</h3><p class="muted">Освойте пару десятков «фишек» и научитесь собирать их в яркие связки под хиты.</p></div>
+          <div class="card"><h3>Артистам и авторам</h3><p class="muted">Прокачайте пластику и сценическое присутствие, добавьте джаз‑фанк в клипы и live‑номера.</p></div>
+          <div class="card"><h3>Тренерам и хореографам</h3><p class="muted">Освежите репертуар, получите методичные разборы и готовые комбинации.</p></div>
+          <div class="card"><h3>Занятым людям</h3><p class="muted">Короткие уроки и гибкий темп, который легко совместить с графиком.</p></div>
+          <div class="card"><h3>Для себя</h3><p class="muted">Больше свободы и уверенности в движении, крепкое настроение и полезная физнагрузка.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="learn">
+      <div class="wrap">
+        <h2 class="section-title">Что освоите за курс</h2>
+        <div class="grid col-3">
+          <div class="card"><h3>База Jazz Funk</h3><p class="muted">Грув, айсолиэйшн (изолированная работа частями тела), акценты, переходы, работа со скоростью и динамикой.</p></div>
+          <div class="card"><h3>Музыкальность</h3><p class="muted">Как «слышать» бочку, снейр и вокальные акценты и встраивать их в движение.</p></div>
+          <div class="card"><h3>Техника и пластика</h3><p class="muted">Линии, уровни, баланс, контроль корпуса и работа центра.</p></div>
+          <div class="card"><h3>Импровизация</h3><p class="muted">Инструменты для свободного танца — от простых паттернов к сольным мини‑соло.</p></div>
+          <div class="card"><h3>Комбинации</h3><p class="muted">Эффектные связки в стиле поп/урбан для зала и сцены.</p></div>
+          <div class="card"><h3>Выступление</h3><p class="muted">Собираем мини‑номер и разбираем типичные ошибки новичков.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="program">
+      <div class="wrap">
+        <h2 class="section-title">Программа обучения</h2>
+        <p class="muted">Примерная структура: 8 модулей • практические задания и короткие тесты после каждого урока • доступ навсегда.</p>
+        <div class="grid col-2" style="margin-top:8px">
+          <div class="prog-item"><div class="prog-step">1</div><div><b>Разминка и база</b><br><span class="muted">Мобилизация, растяжка, безопасность, базовые паттерны грува.</span></div></div>
+          <div class="prog-item"><div class="prog-step">2</div><div><b>Изоляции и акценты</b><br><span class="muted">Работа грудной клеткой, тазом и плечами; акцентирование и дыхание.</span></div></div>
+          <div class="prog-item"><div class="prog-step">3</div><div><b>Музыкальность</b><br><span class="muted">Ритмические сетки, счёт 4/4 и 8, попадание в вокальные и инструментальные пики.</span></div></div>
+          <div class="prog-item"><div class="prog-step">4</div><div><b>Комбинации Jazz Funk I</b><br><span class="muted">Эффектная связка на медленный/средний трек.</span></div></div>
+          <div class="prog-item"><div class="prog-step">5</div><div><b>Комбинации Jazz Funk II</b><br><span class="muted">Быстрый темп, уровни, переходы и работа в пространстве.</span></div></div>
+          <div class="prog-item"><div class="prog-step">6</div><div><b>Степень свободы</b><br><span class="muted">Импровизация, фрейминг, микс элементов других урбан‑стилей.</span></div></div>
+          <div class="prog-item"><div class="prog-step">7</div><div><b>Соло и сцена</b><br><span class="muted">Подготовка мини‑номера, сценическое присутствие и камера.</span></div></div>
+          <div class="prog-item"><div class="prog-step">8</div><div><b>Разбор ошибок</b><br><span class="muted">Типичные ошибки новичков и как их чинить. Домашняя тренировка.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="teacher">
+      <div class="wrap">
+        <h2 class="section-title">Преподаватель</h2>
+        <div class="teacher card">
+          <div style="background:#1a1a23;border:1px solid var(--stroke);border-radius:12px;height:180px;display:grid;place-items:center">Фото</div>
+          <div>
+            <h3>Имя Фамилия</h3>
+            <p class="muted">Хореограф и танцовщик с 10+ годами опыта, участник сценических шоу и постановщик номеров для артистов. Специализация — Jazz Funk и смежные урбан‑стили. Ведёт классы для начинающих и продолжающих, помогает раскрыть музыкальность и уверенность.</p>
+            <div class="partners" style="margin-top:10px">
+              <div class="p" title="Партнёр 1"></div>
+              <div class="p" title="Партнёр 2"></div>
+              <div class="p" title="Партнёр 3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2 class="section-title">Как проходит обучение</h2>
+        <div class="grid col-4">
+          <div class="card"><h3>Видеоуроки</h3><p class="muted">Смотрите на удобной платформе, с любого устройства.</p></div>
+          <div class="card"><h3>Практика</h3><p class="muted">Задания и короткие тесты помогают закреплять материал.</p></div>
+          <div class="card"><h3>Поддержка</h3><p class="muted">Помощь при технических вопросах и рекомендации по практике.</p></div>
+          <div class="card"><h3>Сертификат</h3><p class="muted">Именной сертификат после финального задания.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="price">
+      <div class="wrap">
+        <h2 class="section-title">Тариф и оплата</h2>
+        <div class="grid col-2">
+          <div class="card">
+            <div class="ribbon">Скидка сезона</div>
+            <h3 style="margin-top:10px">Полный доступ</h3>
+            <p class="muted">Доступ ко всем урокам и обновлениям, задания и тесты, сертификат.</p>
+            <div style="font-size:32px;font-weight:900">1 900 ₽ <s style="font-size:18px;font-weight:600;color:var(--muted)">5 200 ₽</s></div>
+            <p class="muted">Рассрочка 4×475 ₽ без переплат.</p>
+            <a href="#apply" class="btn">Купить со скидкой</a>
+            <p class="note" style="margin-top:10px">Доступ приходит на e‑mail сразу после оплаты. Возможен возврат, если курс не подойдёт.</p>
+          </div>
+          <div class="card">
+            <h3>Важная информация</h3>
+            <ul class="muted">
+              <li>Способы оплаты: карта, рассрочка (Сбер, Т‑банк), Сплит;</li>
+              <li>Доступ ко всем обновлениям без ограничений по времени;</li>
+              <li>Поддержка в чате по технике и организации занятий;</li>
+              <li>Можно оформить бумажный оригинал сертификата по запросу.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="apply">
+      <div class="wrap">
+        <h2 class="section-title">Оставить заявку</h2>
+        <div class="grid col-2">
+          <form class="card form" onsubmit="return submitForm(event)">
+            <input required type="text" name="name" placeholder="Ваше имя" />
+            <input required type="tel" name="phone" placeholder="Телефон" />
+            <input required type="email" name="email" placeholder="E‑mail" />
+            <textarea rows="4" name="comment" placeholder="Комментарий (по желанию)"></textarea>
+            <label class="muted" style="display:flex;gap:8px;align-items:flex-start"><input type="checkbox" required />
+              <span>Согласен(на) на обработку персональных данных и принимаю условия публичной оферты.</span></label>
+            <button class="btn" type="submit">Отправить заявку</button>
+            <small>Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.</small>
+          </form>
+          <div class="card">
+            <h3>Есть вопросы?</h3>
+            <p class="muted">Оставьте контакты — мы свяжемся, подскажем по программе и поможем оформить рассрочку.</p>
+            <div class="partners">
+              <div class="p" title="Партнёр"></div>
+              <div class="p" title="Партнёр"></div>
+              <div class="p" title="Партнёр"></div>
+            </div>
+            <p class="note" style="margin-top:12px">Работаем по стандартам онлайн‑образования. Данные защищены.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap faq">
+        <h2 class="section-title">FAQ</h2>
+        <div class="grid col-2">
+          <details><summary>Нужна ли подготовка?</summary><p class="muted">Нет, курс выстроен с нуля. Если уже танцуете — возьмёте техники и комбинации для развития.</p></details>
+          <details><summary>Сколько длится обучение?</summary><p class="muted">В среднем 4–6 недель при занятиях по 2–3 часа в неделю. Доступ к урокам остаётся навсегда.</p></details>
+          <details><summary>Будет ли обратная связь?</summary><p class="muted">Да, куратор отвечает на вопросы по технике и даёт рекомендации по практике.</p></details>
+          <details><summary>Есть рассрочка?</summary><p class="muted">Да, можно оплатить 4 частями без переплат.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <div>© <span id="y"></span> JazzFunk.Academy</div>
+        <div class="muted">Контакты: hello@jazzfunk.academy • +7 000 000‑00‑00</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear()
+    function submitForm(e){
+      e.preventDefault()
+      const fd = new FormData(e.target)
+      const payload = Object.fromEntries(fd.entries())
+      // Здесь можно подключить отправку в CRM/Telegram/почту
+      alert('Спасибо! Заявка отправлена. Мы свяжемся с вами в ближайшее время.')
+      e.target.reset()
+      return false
+    }
+  </script>
+</body>
+</html>

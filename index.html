@@ -120,6 +120,33 @@
   .embed > iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
 </style>
 
+<!-- __DESKTOP_ENHANCEMENTS__ -->
+<style>
+  /* Desktop/laptop refinements */
+  @media (min-width: 1024px) {
+    .container, .wrap, .section { max-width: 1200px; padding-left: 24px; padding-right: 24px; }
+    .section { padding-top: 48px; padding-bottom: 48px; }
+    /* Flex rows stay in row-direction on large screens */
+    .row, .grid, .columns { flex-direction: row; gap: 24px; }
+    .col, .column { flex: 1 1 0; min-width: 0; }
+    /* Optional typography width for long text blocks if such class exists */
+    .prose { max-width: 72ch; }
+    /* Hero sections with background images scale nicer */
+    .hero, .header-hero { padding-top: 72px; padding-bottom: 72px; }
+    /* Navigation spacing, if present */
+    nav, .nav, .navbar { padding-top: 12px; padding-bottom: 12px; }
+    /* Cards layout: if project uses .card */
+    .card { padding: 24px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,.06); }
+    /* Media alignment */
+    .media-left, .media-right { display: flex; align-items: center; }
+  }
+  /* Tablet middle ground */
+  @media (min-width: 768px) and (max-width: 1023.98px) {
+    .container, .wrap, .section { max-width: 1000px; padding-left: 20px; padding-right: 20px; }
+    .row, .grid, .columns { gap: 20px; }
+    .section { padding-top: 40px; padding-bottom: 40px; }
+  }
+</style>
 </head>
 <body>
   <header>

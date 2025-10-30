@@ -197,6 +197,62 @@
   .menu-toggle.is-open .mt-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 </style>
 
+
+<!-- __NAV_PILL_CSS__ -->
+<style>
+  /* Clickable, tidy nav with a highlighted first item */
+  nav a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    margin-inline: 6px;
+    border-radius: 999px;
+    color: var(--txt);
+    opacity: .9;
+    transition: opacity .15s ease, background-color .15s ease, transform .12s ease;
+  }
+  nav a:hover { opacity: 1; background: rgba(255,255,255,.06); }
+  nav a:active { transform: translateY(1px); }
+  nav a:focus-visible { outline: 2px solid rgba(255,255,255,.35); outline-offset: 2px; }
+
+  /* First item — primary pill */
+  nav a.is-primary,
+  nav a:first-child { 
+    background: linear-gradient(135deg,var(--brand),var(--brand-2));
+    color: #fff;
+    font-weight: 700;
+    opacity: 1;
+    box-shadow: 0 6px 20px rgba(255,45,138,.25), 0 8px 26px rgba(138,45,255,.18);
+  }
+  nav a.is-primary:hover,
+  nav a:first-child:hover { filter: saturate(1.05); }
+  nav a.is-primary:active,
+  nav a:first-child:active { transform: translateY(1px); }
+
+  /* Keep chip CTA distinct from primary tab */
+  nav a.chip {
+    border: 1px solid var(--stroke);
+    background: transparent;
+    color: var(--txt);
+    font-weight: 600;
+  }
+
+  /* Mobile harmonization with burger menu */
+  @media (max-width: 780px) {
+    #site-nav a { margin: 0; border-radius: 12px; }
+    #site-nav a:hover { background: rgba(255,255,255,.07); }
+    #site-nav .chip {
+      background: linear-gradient(135deg,var(--brand),var(--brand-2));
+      border: none;
+      color: #fff;
+      font-weight: 700;
+      margin-top: 6px;
+    }
+  }
+</style>
+
 </head>
 <body>
   <header>
@@ -208,7 +264,7 @@
         <span class="mt-line"></span>
       </button>
       <nav id="site-nav">
-        <a href="#who">Кому подойдёт</a>
+        <a class="is-primary" href="#who">Кому подойдёт</a>
         <a href="#learn">Чему научитесь</a>
         <a href="#program">Программа</a>
         <a href="#teacher">Преподаватель</a>

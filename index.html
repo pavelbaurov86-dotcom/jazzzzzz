@@ -1,46 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <style>
-/* ---------- Адаптивная шапка ---------- */
-@media (max-width: 780px) {
-  header .bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 10px 0;
-  }
-  .logo {
-    font-size: 18px;
-    margin-bottom: 4px;
-  }
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 14px;
-    width: 100%;
-  }
-  nav a {
-    display: block;
-    padding: 6px 0;
-    margin: 0;
-    font-size: 15px;
-    border-bottom: 1px solid rgba(255,255,255,.05);
-  }
-  nav a:last-child {
-    border-bottom: none;
-  }
-  /* кнопка-заявка выравнивается по центру */
-  nav a.chip {
-    background: linear-gradient(135deg,var(--brand),var(--brand-2));
-    border: none;
-    color: #fff;
-    font-weight: 600;
-    border-radius: 8px;
-    padding: 8px 12px;
-    align-self: center;
-  }
-}
-</style>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -188,12 +147,67 @@
     .section { padding-top: 40px; padding-bottom: 40px; }
   }
 </style>
+<!-- __BURGER_CSS__ -->
+<style>
+  /* Burger button base (hidden on desktop) */
+  .menu-toggle { display:none; background:transparent; border:0; padding:10px; margin-left:auto; cursor:pointer; }
+  .menu-toggle:focus { outline: 2px solid rgba(255,255,255,.4); outline-offset: 2px; border-radius: 8px; }
+  .menu-toggle .mt-line { display:block; width:26px; height:2px; background:#fff; margin:5px 0; transition:transform .2s ease, opacity .2s ease; }
+
+  /* Mobile layout: show burger, collapse nav */
+  @media (max-width: 780px) {
+    header .bar { gap: 8px; }
+    .menu-toggle { display:block; }
+    #site-nav { 
+      width: 100%;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height .25s ease, opacity .2s ease;
+    }
+    #site-nav.open {
+      max-height: 400px; /* достаточно для списка ссылок */
+      opacity: 1;
+    }
+    #site-nav a {
+      display:block;
+      padding:10px 0;
+      margin:0;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    #site-nav a:last-child { border-bottom:none; }
+    /* Stylize call-to-action link as button */
+    #site-nav .chip {
+      display:inline-flex;
+      margin-top:6px;
+      background: linear-gradient(135deg,var(--brand),var(--brand-2));
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 10px;
+      padding: 10px 14px;
+    }
+    /* Stack header content neatly on mobile */
+    header .bar { flex-wrap: wrap; align-items: center; }
+  }
+
+  /* Burger animation when open */
+  .menu-toggle.is-open .mt-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.is-open .mt-line:nth-child(2) { opacity: 0; }
+  .menu-toggle.is-open .mt-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+</style>
+
 </head>
 <body>
   <header>
     <div class="wrap bar">
       <div class="logo"><span class="logo-dot"></span> JazzFunk.Academy</div>
-      <nav>
+      <button class="menu-toggle" aria-label="Меню" aria-controls="site-nav" aria-expanded="false">
+        <span class="mt-line"></span>
+        <span class="mt-line"></span>
+        <span class="mt-line"></span>
+      </button>
+      <nav id="site-nav">
         <a href="#who">Кому подойдёт</a>
         <a href="#learn">Чему научитесь</a>
         <a href="#program">Программа</a>
@@ -389,5 +403,37 @@
       return false
     }
   </script>
+
+<script>
+// __BURGER_JS__
+(function() {
+  var btn = document.querySelector('.menu-toggle');
+  var nav = document.getElementById('site-nav');
+  if (!btn || !nav) return;
+  function toggle() {
+    var open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    btn.classList.toggle('is-open', !open);
+    nav.classList.toggle('open', !open);
+  }
+  btn.addEventListener('click', toggle);
+  // Close when link clicked
+  nav.addEventListener('click', function(e) {
+    var t = e.target;
+    if (t && t.tagName === 'A' && btn.getAttribute('aria-expanded') === 'true') {
+      toggle();
+    }
+  });
+  // Reset on resize to desktop
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 780) {
+      btn.setAttribute('aria-expanded','false');
+      btn.classList.remove('is-open');
+      nav.classList.remove('open');
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
